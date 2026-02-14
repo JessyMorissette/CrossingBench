@@ -1,3 +1,8 @@
+[![CI](https://github.com/JessyMorissette/CrossingBench/actions/workflows/ci.yml/badge.svg)](https://github.com/JessyMorissette/CrossingBench/actions)
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Python](https://img.shields.io/badge/Python-%E2%89%A53.9-green.svg)](https://www.python.org/)
+[![Release](https://img.shields.io/github/v/release/JessyMorissette/CrossingBench)](https://github.com/JessyMorissette/CrossingBench/releases)
+
 # CrossingBench
 
 > *The correct unit of optimization in heterogeneous computing is not the
