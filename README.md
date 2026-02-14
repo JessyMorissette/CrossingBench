@@ -18,6 +18,11 @@ The formal law statement, definitions, and empirical basis are in
 All energy parameters and their sources are in
 [`docs/HYPOTHESES.md`](docs/HYPOTHESES.md).
 
+📄 Working Paper — February 2026  
+CrossingFlow: Minimizing Domain Crossings in Heterogeneous Systems Under Error Constraints  
+
+Available in `/paper/` (versioned filename update in progress).
+
 ## Why This Matters
 
 Heterogeneous systems — analog CIM, chiplets, near-memory, multi-voltage —
