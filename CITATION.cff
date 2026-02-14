@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+title: "CrossingBench"
+message: "If you use this software, please cite it."
+type: software
+authors:
+  - name: "Jessy Morissette"
+version: 0.1.0
+date-released: 2026-02-14
+license: Apache-2.0
