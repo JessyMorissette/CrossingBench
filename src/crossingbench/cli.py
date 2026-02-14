@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import argparse
 import json
-from dataclasses import asdict
 
 from .core import (
     DEFAULT_BOUNDARIES,
@@ -16,10 +15,22 @@ from .io import write_csv
 
 
 def _add_common(parser: argparse.ArgumentParser) -> None:
-    parser.add_argument("--boundary", choices=sorted(DEFAULT_BOUNDARIES.keys()), default="analog")
-    parser.add_argument("--compute", choices=sorted(DEFAULT_COMPUTE.keys()), default="digital")
-    parser.add_argument("--beta", type=float, default=None, help="Override beta (pJ/byte)")
-    parser.add_argument("--alpha", type=float, default=None, help="Override alpha (pJ/event)")
+    parser.add_argument(
+        "--boundary",
+        choices=sorted(DEFAULT_BOUNDARIES.keys()),
+        default="analog",
+    )
+    parser.add_argument(
+        "--compute",
+        choices=sorted(DEFAULT_COMPUTE.keys()),
+        default="digital",
+    )
+    parser.add_argument(
+        "--beta", type=float, default=None, help="Override beta (pJ/byte)",
+    )
+    parser.add_argument(
+        "--alpha", type=float, default=None, help="Override alpha (pJ/event)",
+    )
     parser.add_argument(
         "--compute_pj_per_byte",
         type=float,
@@ -38,33 +49,60 @@ def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(description="CrossingBench")
     sub = p.add_subparsers(dest="cmd", required=True)
 
-    s = sub.add_parser("sweep", help="Log-sweep crossing bytes and estimate local epsilon")
+    s = sub.add_parser(
+        "sweep", help="Log-sweep crossing bytes and estimate local epsilon",
+    )
     _add_common(s)
-    s.add_argument("--bytes", type=int, default=262_144, help="Intra-domain compute bytes")
+    s.add_argument(
+        "--bytes", type=int, default=262_144,
+        help="Intra-domain compute bytes",
+    )
     s.add_argument("--cross_min", type=int, default=256)
     s.add_argument("--cross_max", type=int, default=524_288)
     s.add_argument("--steps", type=int, default=12)
     s.add_argument("--out", type=str, default="sweep.csv")
-    s.add_argument("--json", type=str, default=None, help="Optional JSON summary output path")
+    s.add_argument(
+        "--json", type=str, default=None,
+        help="Optional JSON summary output path",
+    )
 
-    c = sub.add_parser("compare", help="Compare baseline vs reduced crossing volume")
+    c = sub.add_parser(
+        "compare", help="Compare baseline vs reduced crossing volume",
+    )
     _add_common(c)
-    c.add_argument("--bytes", type=int, default=262_144, help="Intra-domain compute bytes")
+    c.add_argument(
+        "--bytes", type=int, default=262_144,
+        help="Intra-domain compute bytes",
+    )
     c.add_argument("--cross_bytes", type=int, default=196_608)
     c.add_argument("--reduce_factor", type=float, default=3.0)
-    c.add_argument("--json", type=str, default=None, help="Optional JSON output path")
+    c.add_argument(
+        "--json", type=str, default=None, help="Optional JSON output path",
+    )
 
     return p
 
 
-def _resolve_costs(args: argparse.Namespace) -> tuple[ComputeCost, BoundaryCost]:
+def _resolve_costs(
+    args: argparse.Namespace,
+) -> tuple[ComputeCost, BoundaryCost]:
     boundary = DEFAULT_BOUNDARIES[args.boundary]
     compute = DEFAULT_COMPUTE[args.compute]
 
     if args.beta is not None or args.alpha is not None:
+        alpha = (
+            args.alpha
+            if args.alpha is not None
+            else boundary.alpha_pj_per_event
+        )
+        beta = (
+            args.beta
+            if args.beta is not None
+            else boundary.beta_pj_per_byte
+        )
         boundary = BoundaryCost(
-            alpha_pj_per_event=args.alpha if args.alpha is not None else boundary.alpha_pj_per_event,
-            beta_pj_per_byte=args.beta if args.beta is not None else boundary.beta_pj_per_byte,
+            alpha_pj_per_event=alpha,
+            beta_pj_per_byte=beta,
         )
 
     if args.compute_pj_per_byte is not None:
@@ -115,15 +153,20 @@ def main() -> None:
         print(
             " "
             f"Boundary={args.boundary} Compute={args.compute} "
-            f"alpha={boundary.alpha_pj_per_event} beta={boundary.beta_pj_per_byte} "
+            f"alpha={boundary.alpha_pj_per_event} "
+            f"beta={boundary.beta_pj_per_byte} "
             f"compute={compute.pj_per_byte}"
         )
+        frac_min = summary["crossing_fraction_min"]
+        frac_max = summary["crossing_fraction_max"]
         print(
-            f"Crossing fraction range: {summary['crossing_fraction_min']:.3f} .. {summary['crossing_fraction_max']:.3f}"
+            f"Crossing fraction range: {frac_min:.3f} .. {frac_max:.3f}"
         )
         if eps_vals:
+            eps_min = summary["epsilon_local_min"]
+            eps_max = summary["epsilon_local_max"]
             print(
-                f"Epsilon local range:     {summary['epsilon_local_min']:.3f} .. {summary['epsilon_local_max']:.3f}"
+                f"Epsilon local range:     {eps_min:.3f} .. {eps_max:.3f}"
             )
 
         if args.json:

@@ -120,19 +120,27 @@ def test_sweep_equal_min_max():
 
 def test_sweep_rejects_steps_1():
     try:
-        sweep(bytes_compute=100, cross_min=10, cross_max=100, steps=1,
-              bytes_per_event=10, compute=ComputeCost(pj_per_byte=0.25),
-              boundary=BoundaryCost(alpha_pj_per_event=0.0, beta_pj_per_byte=1.0))
-        assert False, "Should have raised ValueError"
+        sweep(
+            bytes_compute=100, cross_min=10, cross_max=100, steps=1,
+            bytes_per_event=10, compute=ComputeCost(pj_per_byte=0.25),
+            boundary=BoundaryCost(
+                alpha_pj_per_event=0.0, beta_pj_per_byte=1.0,
+            ),
+        )
+        raise AssertionError("Should have raised ValueError")
     except ValueError:
         pass
 
 def test_sweep_rejects_negative_cross():
     try:
-        sweep(bytes_compute=100, cross_min=-1, cross_max=100, steps=5,
-              bytes_per_event=10, compute=ComputeCost(pj_per_byte=0.25),
-              boundary=BoundaryCost(alpha_pj_per_event=0.0, beta_pj_per_byte=1.0))
-        assert False, "Should have raised ValueError"
+        sweep(
+            bytes_compute=100, cross_min=-1, cross_max=100, steps=5,
+            bytes_per_event=10, compute=ComputeCost(pj_per_byte=0.25),
+            boundary=BoundaryCost(
+                alpha_pj_per_event=0.0, beta_pj_per_byte=1.0,
+            ),
+        )
+        raise AssertionError("Should have raised ValueError")
     except ValueError:
         pass
 
@@ -175,8 +183,10 @@ def test_compare_has_all_fields():
         compute=ComputeCost(pj_per_byte=0.25),
         boundary=BoundaryCost(alpha_pj_per_event=0.0, beta_pj_per_byte=1.0),
     )
-    required = ["baseline_total_pj", "reduced_total_pj", "energy_gain_x",
-                "baseline_cross_frac", "reduced_cross_frac", "elasticity_effective"]
+    required = [
+        "baseline_total_pj", "reduced_total_pj", "energy_gain_x",
+        "baseline_cross_frac", "reduced_cross_frac", "elasticity_effective",
+    ]
     for key in required:
         assert key in out, f"Missing key: {key}"
 
@@ -186,9 +196,11 @@ def test_compare_rejects_negative_bytes():
             bytes_compute=100, cross_bytes=-1, bytes_per_event=256,
             reduce_factor=3.0,
             compute=ComputeCost(pj_per_byte=0.25),
-            boundary=BoundaryCost(alpha_pj_per_event=0.0, beta_pj_per_byte=1.0),
+            boundary=BoundaryCost(
+                alpha_pj_per_event=0.0, beta_pj_per_byte=1.0,
+            ),
         )
-        assert False, "Should have raised ValueError"
+        raise AssertionError("Should have raised ValueError")
     except ValueError:
         pass
 
