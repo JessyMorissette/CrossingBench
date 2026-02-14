@@ -12,7 +12,6 @@ from crossingbench.core import (
     sweep,
 )
 
-
 # ── Basic energy functions ──
 
 def test_energy_intra_basic():

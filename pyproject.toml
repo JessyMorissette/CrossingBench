@@ -31,13 +31,6 @@ path = "src/crossingbench/__init__.py"
 line-length = 100
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B", "SIM"]
-<<<<<<< HEAD
-[tool.pytest.ini_options]
-addopts = "-q"
-testpaths = ["tests"]
-
-=======
->>>>>>> 89c20c3 (Fix all linting errors (ruff))
 [tool.pytest.ini_options]
 addopts = "-q"
 testpaths = ["tests"]
