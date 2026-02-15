@@ -125,19 +125,22 @@ Override: `--beta 2.5 --alpha 50 --compute_pj_per_byte 0.1`
 ```
 CrossingBench/
 ├── docs/
-│   ├── CROSSING_LAW.md      # The law (definitions, decomposition, results)
-│   └── HYPOTHESES.md         # Every pJ/byte value traced to its source
+│   ├── CROSSING_LAW.md        # The law (definitions, decomposition, results)
+│   └── HYPOTHESES.md          # Every pJ/byte value traced to its source
+├── paper/
+│   └── CrossingFlow_Domain_Crossing_Law_v1_2026.pdf
 ├── examples/
 │   ├── reproduce_three_boundaries.sh
-│   └── real_workloads.py     # ResNet-50 + GPT-2 validation
+│   └── real_workloads.py      # ResNet-50 + GPT-2 validation
 ├── src/crossingbench/
-│   ├── core.py               # Cost model, sweep, compare
-│   ├── cli.py                # Command-line interface
-│   └── io.py                 # CSV output
+│   ├── core.py                # Cost model, sweep, compare
+│   ├── cli.py                 # Command-line interface
+│   └── io.py                  # CSV output
 ├── tests/
-│   └── test_core.py          # Unit tests
-├── data/                     # Reference CSVs
-└── pyproject.toml            # Package metadata (hatchling)
+│   └── test_core.py           # Unit tests
+├── data/                      # Reference CSVs
+└── pyproject.toml             # Package metadata (hatchling)
+
 ```
 
 ## Developer Setup
