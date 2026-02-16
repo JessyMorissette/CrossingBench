@@ -31,6 +31,13 @@ consistently fall short because **domain crossings** (ADC/DAC, DRAM fetch,
 inter-die transfer, level shifter) cost 5× to 32,000× more per byte than
 the compute they enable.
 
+![Domain Crossing Law – Energy Dominance by Boundary Type](docs/figures/crossing_dominance.png)
+
+> **Figure 1.** Crossing energy fraction vs. crossing volume for three boundary
+> types. The analog curve shifts left due to ultra-low intra-domain compute
+> energy (0.1 pJ/B vs 0.25 pJ/B digital baseline). Shaded regions: ±20%
+> uncertainty on β. Reproduce with `python examples/plot_dominance.py`.
+
 CrossingBench lets you:
 - **Measure** crossing dominance via the elasticity metric ε
 - **Sweep** crossing volume and observe the compute→crossing transition
@@ -94,6 +101,11 @@ bash examples/reproduce_three_boundaries.sh
 
 ```bash
 python examples/real_workloads.py
+```
+
+### 5) Regenerate the dominance figure
+```
+python examples/plot_dominance.py
 ```
 
 ## Default Boundary Parameters
