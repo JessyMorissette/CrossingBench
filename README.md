@@ -1,3 +1,4 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18653510.svg)](https://doi.org/10.5281/zenodo.18653510)
 [![CI](https://github.com/JessyMorissette/CrossingBench/actions/workflows/ci.yml/badge.svg)](https://github.com/JessyMorissette/CrossingBench/actions)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Python](https://img.shields.io/badge/Python-%E2%89%A53.9-green.svg)](https://www.python.org/)
@@ -153,16 +154,20 @@ ruff check .
 
 ## Citation
 
-If you use CrossingBench, please cite:
+If you use CrossingBench in academic work, please cite:
 
+Morissette, J. (2026). *CrossingBench v0.1.0: Microbenchmark for Boundary-Dominated Energy Scaling*. Zenodo. https://doi.org/10.5281/zenodo.18653510
+
+BibTeX:
+
+```bibtex
 @software{morissette2026crossingbench,
-  author  = {Morissette, Jessy},
-  title   = {CrossingBench v0.1.0: Microbenchmark for Boundary-Dominated Energy Scaling},
-  year    = {2026},
+  author    = {Morissette, Jessy},
+  title     = {CrossingBench v0.1.0: Microbenchmark for Boundary-Dominated Energy Scaling},
+  year      = {2026},
   publisher = {Zenodo},
-  doi     = {10.5281/zenodo.18653510},
-  url     = {https://doi.org/10.5281/zenodo.18653510},
-  license = {Apache-2.0}
+  doi       = {10.5281/zenodo.18653510},
+  url       = {https://doi.org/10.5281/zenodo.18653510}
 }
 
 
