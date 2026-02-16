@@ -155,14 +155,16 @@ ruff check .
 
 If you use CrossingBench, please cite:
 
-```bibtex
-@software{crossingbench2026,
-  title   = {CrossingBench},
+@software{morissette2026crossingbench,
+  author  = {Morissette, Jessy},
+  title   = {CrossingBench v0.1.0: Microbenchmark for Boundary-Dominated Energy Scaling},
   year    = {2026},
-  license = {Apache-2.0},
-  url     = {https://github.com/JessyMorissette/CrossingBench}
+  publisher = {Zenodo},
+  doi     = {10.5281/zenodo.18653510},
+  url     = {https://doi.org/10.5281/zenodo.18653510},
+  license = {Apache-2.0}
 }
-```
+
 
 ## License
 
