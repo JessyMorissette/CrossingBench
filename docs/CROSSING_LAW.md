@@ -74,6 +74,22 @@ Consequently, reducing crossing volume V_b yields near-linear system-level
 energy reduction in crossing-dominated regimes. The dominance condition is
 measurable via ε and does not require a priori workload classification.
 
+### Structural Ratio
+
+The dominance transition is governed by the dimensionless ratio:
+```
+R = β_b · V_b / C_intra
+```
+
+When R >> 1, the system is crossing-dominant (ε → 1). When R << 1, it is
+compute-dominant (ε → 0).
+
+This clarifies why analog CIM reaches dominance at very low crossing
+volumes: with C_intra = 0.0001 pJ/byte, even modest V_b produces R >> 1.
+Chiplet and memory boundaries share a higher compute baseline (0.25 pJ/byte),
+requiring proportionally larger V_b to cross the same threshold. The
+transition depends on β/C_intra, not on β alone.
+
 ---
 
 ## 4. Empirical Results (7nm, pJ/byte)
