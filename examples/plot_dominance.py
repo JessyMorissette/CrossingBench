@@ -1,6 +1,4 @@
 import matplotlib.pyplot as plt
-import matplotlib.ticker as ticker
-import numpy as np
 
 # ── Exact data from CrossingBench CSVs ──────────────────────────────────
 
@@ -93,7 +91,8 @@ ax.legend(loc='lower right', fontsize=10, framealpha=0.9, edgecolor='0.8')
 caption = (
     r"$\bf{Figure\ 1.}$ Crossing energy fraction vs. crossing volume for three boundary types. "
     "Analog CIM uses an ultra-low intra-domain compute cost (0.1 pJ/B); chiplet and memory\n"
-    r"boundaries share a digital compute baseline (0.25 pJ/B). Shaded regions: ±20% uncertainty on $\beta$. "
+    r"boundaries share a digital compute baseline (0.25 pJ/B)."
+    r" Shaded regions: ±20% uncertainty on $\beta$. "
     "Data: CrossingBench sweep with 262 144 B compute volume."
 )
 fig.text(0.5, -0.01, caption, ha='center', fontsize=9.5, color='0.3',
