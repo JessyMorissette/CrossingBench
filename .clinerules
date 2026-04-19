@@ -1,0 +1,18 @@
+# PMS — Pulse Memory System Bootstrap
+# Ce repo: CrossingBench | Couche: L5-benchmark | Lang: Python
+
+## Contexte obligatoire
+Avant toute tâche, lis `../pulse-memory-system/BOOTSTRAP.md` pour le contexte global.
+Pour les détails de CE repo: `../pulse-memory-system/pms/inventory/repos.json` → id:"CrossingBench"
+
+## Ce repo en bref
+Framework de benchmark A/B pour évaluer les systèmes conversationnels.
+LOI 7 et LOI 10 incarnées.
+
+## Dépendances
+- Dépend de: RIEN (outil indépendant)
+- Utilisé par: pulseflow, PulseLangue
+
+## Lois à respecter
+- LOI 7: Crossing Law — c'est CE repo
+- LOI 10: Benchmark-Driven Development
