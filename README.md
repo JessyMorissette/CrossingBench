@@ -44,7 +44,40 @@ CrossingBench lets you:
 - **Compare** baseline vs crossing-reduced schedules
 - **Validate** the law on your own boundary parameters
 
+## Why Custom Inference Accelerators Make This Concrete
+
+In late 2025, OpenAI announced an effort with Broadcom to co-design custom
+silicon for large-scale LLM inference. Public framing of these next-generation
+accelerators echoes a broader industry shift: at scale, the dominant cost of
+inference is increasingly **moving data across boundaries** — between memory
+and compute, between dies, between voltage and signal domains — not the
+arithmetic itself.
+
+That is exactly the regime CrossingBench was built to measure.
+
+CrossingBench does not model any specific product, and makes no claim about
+the internal design of any vendor's hardware. What it offers is the missing
+*unit of analysis* for boundary-dominated systems: the **crossing**. When an
+accelerator's efficiency story depends on keeping data local and minimizing
+domain transfers, the relevant metric is not FLOPs — or even operations — but
+crossing volume weighted by boundary cost (the elasticity ε this benchmark
+measures).
+
+In short:
+- **The industry is moving toward inference accelerators** whose value comes
+  largely from reducing data movement, not just adding raw compute.
+- **CrossingBench provides a reproducible, vendor-neutral way** to quantify
+  that value — to ask *how much* of a system's energy is spent crossing
+  boundaries, and *how much* a given schedule actually saves.
+- **The Domain Crossing Law makes the intuition explicit and falsifiable**, so
+  claims about "less data movement" can be measured rather than asserted.
+
+If you are evaluating or building boundary-dominated hardware, this benchmark
+is a small, dependency-free way to test the assumption the field is now
+betting on.
+
 ## Cost Model
+
 
 ```
 C_total = C_intra + Σ_b (α_b · events_b + β_b · bytes_b)
