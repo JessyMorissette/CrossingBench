@@ -46,12 +46,13 @@ CrossingBench lets you:
 
 ## Why Custom Inference Accelerators Make This Concrete
 
-In late 2025, OpenAI announced an effort with Broadcom to co-design custom
-silicon for large-scale LLM inference. Public framing of these next-generation
-accelerators echoes a broader industry shift: at scale, the dominant cost of
-inference is increasingly **moving data across boundaries** — between memory
-and compute, between dies, between voltage and signal domains — not the
-arithmetic itself.
+In October 2025, OpenAI and Broadcom announced a collaboration to develop
+and deploy 10 gigawatts of OpenAI-designed custom AI accelerators. 
+In June 2026, they unveiled Jalapeño, an LLM-optimized inference chip that 
+made this shift toward boundary-aware, data-movement-efficient
+inference hardware more concrete.
+
+The public framing of these next-generation accelerators reflects a broader industry transition: at scale, the dominant cost of inference is increasingly not the arithmetic itself, but the movement of data across boundaries — between memory and compute, between dies, and between voltage and signal domains.
 
 That is exactly the regime CrossingBench was built to measure.
 
